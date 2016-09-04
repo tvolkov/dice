@@ -1,0 +1,20 @@
+{
+  "name": "dice-tvolkov",
+  "version": "0.0.1",
+  "description": "dice expression",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://tvolkov@bitbucket.org/tvolkov/dice.git"
+  },
+  "keywords": [
+    "dice",
+    "expression"
+  ],
+  "author": "Timofey Volkov <timofey.volkov@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/tvolkov/dice#readme"
+}
