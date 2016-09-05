@@ -3,12 +3,12 @@ function DiceTokenizer(strExpression){
 }
 
 DiceTokenizer.prototype.isExpressionValid = function(strExpression) {
-	/^(([0-9]*)d([1-90-9]+|\%)((\+|\-)[1-9]+)*)+$/.test(this.strExpression);
-	return true //todo fix the regex
+    /^(([0-9]*)d([1-90-9]+|\%)((\+|\-)[1-9]+)*)+$/.test(this.strExpression);
+    return true //todo fix the regex
 }
 
 DiceTokenizer.prototype.tokenize = function(){
-	 if (!this.isExpressionValid()){
+     if (!this.isExpressionValid()){
         throw new Error("invalid expression");
     }
     var expression = this.strExpression.replace(/\s+/g, '');
