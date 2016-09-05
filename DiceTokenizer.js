@@ -46,6 +46,11 @@ DiceTokenizer.prototype.tokenize = function(){
 
     console.log(operands);
     console.log(operators);
+
+    return {
+        operands: operands,
+        operators: operators
+    }
 }
 
 module.exports = DiceTokenizer;
