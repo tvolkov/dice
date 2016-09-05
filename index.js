@@ -29,7 +29,7 @@ DiceExpression.prototype.parseExpression = function(){
             operators.push(char);
             if (char === 'd' && currentToken === ''){
                 operands.push('1');
-            } else {
+            } else if (currentToken !== ''){
                 operands.push(currentToken);    
             }
             currentToken = '';
@@ -37,6 +37,7 @@ DiceExpression.prototype.parseExpression = function(){
             console.log('found percent: ' + char + ', current token: ' + currentToken);
             currentToken += '100'
             operands.push(currentToken);
+            currentToken = ''
         }
     }
 
