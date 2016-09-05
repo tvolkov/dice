@@ -3,12 +3,9 @@ function DiceExpression(strExpression) {
     this.tree = this.parseExpression();
 }
 
-DiceExpression.prototype.print = function(){
-    console.log(this.strExpression);
-}
-
 DiceExpression.prototype.isExpressionValid = function(){
-    return /"^([0-9]*)d([1-9]+|%)$"/.test(this.strExpression);    
+    var result = /^(([0-9]*)d([1-90-9]+|\%)((\+|\-)[1-9]+)*)+$/.test(this.strExpression);
+    return true;    
 }
 
 DiceExpression.prototype.parseExpression = function(){
@@ -16,17 +13,39 @@ DiceExpression.prototype.parseExpression = function(){
         throw new Error("invalid expression");
     }
     var expression = this.strExpression.replace(/\s+/g, '');
-    var operandStart = 0;
-    var operand;
+    console.log(expression);
+    var currentToken = '';
+
+    var operands = [];
+    var operators = [];
 
     for (var i = 0; i < expression.length; i++){
-        var char = expression.charAt(i).toLowerCase();
-
-        if (char == '+' || char == '-'){
-            operand = expression.substring(operandStart, i);
-            operandStart = i + 1;
+        var char = expression.charAt(i);
+        if (!isNaN(char)){
+            console.log('found digit: ' + char + ', currentToken: ' + currentToken);
+            currentToken += char;
+        } else if (char === '+' || char === '-' || char === 'd'){
+            console.log('found operand: ' + char + ', current token: ' + currentToken);
+            operators.push(char);
+            if (char === 'd' && currentToken === ''){
+                operands.push('1');
+            } else {
+                operands.push(currentToken);    
+            }
+            currentToken = '';
+        } else if (char == '%'){
+            console.log('found percent: ' + char + ', current token: ' + currentToken);
+            currentToken += '100'
+            operands.push(currentToken);
         }
     }
+
+    if (currentToken.length > 0){
+        operands.push(currentToken);
+    }
+
+    console.log(operands);
+    console.log(operators);
 }
 
 module.exports = DiceExpression;
