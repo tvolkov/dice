@@ -6,6 +6,8 @@ function ExpressionTreeBuilder(tokens){
 //the tree is not balanced, so traversing it will have poor 
 //performance than if it would be balanced.
 //Maybe it's worth to implement some self-balanced tree here, say red-black tree.
+//but that would only make sense for parsing huge expressions.
+//for the majority of cases the current implementation is enough, I think
 ExpressionTreeBuilder.prototype.buildTree = function(){
     var operands = this.tokens.operands;
     var operators = this.tokens.operators;
