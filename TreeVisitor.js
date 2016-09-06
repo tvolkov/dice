@@ -16,11 +16,10 @@ function parseDice(diceStr){
 
 TreeVisitor.prototype.calculateMax = function(){
     var sum = 0;
-    var operator;
+    var operator = '+';
     
-    this.visit(this.tree, function(treeNode){
+    visit(this.tree, function(treeNode){
         var value = typeof treeNode.value !== 'undefined' ? treeNode.value : treeNode;
-
         if (value === '+' || value === '-'){
             operator = value;
         } else if (value.indexOf('d') != -1){
@@ -33,21 +32,20 @@ TreeVisitor.prototype.calculateMax = function(){
             }
         } else {
             if (operator === '+'){                
-                sum += value;
+                sum += parseInt(value, 10);
             } else {
-                sum -= value;
+                sum -= parseInt(value, 10);
             }
         }
     });
-
     return sum;
 }
 
 TreeVisitor.prototype.calculateMin = function(){
     var sum = 0;
-    var operator;
+    var operator = '+';
 
-    this.visit(this.tree, function(treeNode){
+    visit(this.tree, function(treeNode){
         var value = typeof treeNode.value !== 'undefined' ? treeNode.value : treeNode;
         if (value === '+' || value === '-'){
             operator = value;
@@ -75,7 +73,7 @@ TreeVisitor.prototype.calculateRolls = function(){
     var rolls = [];
     var operator;
 
-    this.visit (this.tree, function(treeNode){
+    visit (this.tree, function(treeNode){
         var value = typeof treeNode.value !== 'undefined' ? treeNode.value : treeNode;
         if (value === '+' || value === '-'){
             operator = value;
@@ -95,15 +93,16 @@ TreeVisitor.prototype.calculateRolls = function(){
 }
 
 
-TreeVisitor.prototype.visit = function(treeNode, visitorFunc){
+// TreeVisitor.prototype.visit = function(treeNode, visitorFunc){
+function visit(treeNode, visitorFunc) {
     if (typeof treeNode.left !== 'undefined'){
-        this.visit(treeNode.left, visitorFunc);
+        visit(treeNode.left, visitorFunc);
     }
 
     visitorFunc(treeNode);
 
     if (typeof treeNode.right !== 'undefined'){
-        this.visit(treeNode.right, visitorFunc);
+        visit(treeNode.right, visitorFunc);
     }
 }
 
