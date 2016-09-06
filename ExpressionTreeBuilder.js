@@ -2,6 +2,10 @@ function ExpressionTreeBuilder(tokens){
     this.tokens = tokens;
 }
 
+//this method constructs the simplest possible binary tree.
+//the tree is not balanced, so traversing it will have poor 
+//performance than if it would be balanced.
+//Maybe it's worth to implement some self-balanced tree here, say red-black tree.
 ExpressionTreeBuilder.prototype.buildTree = function(){
     var operands = this.tokens.operands;
     var operators = this.tokens.operators;
@@ -33,7 +37,8 @@ ExpressionTreeBuilder.prototype.buildTree = function(){
         }
     }
 
-    console.log(tree);
+    console.log(JSON.stringify(tree));
+    return tree;
 }
 
 module.exports = ExpressionTreeBuilder;

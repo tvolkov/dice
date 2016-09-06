@@ -21,10 +21,10 @@ DiceTokenizer.prototype.tokenize = function(){
     for (var i = 0; i < expression.length; i++){
         var char = expression.charAt(i);
         if (!isNaN(char)){
-            console.log('found digit: ' + char + ', currentToken: ' + currentToken);
+            // console.log('found digit: ' + char + ', currentToken: ' + currentToken);
             currentToken += char;
         } else if (char === '+' || char === '-' || char === 'd'){
-            console.log('found operand: ' + char + ', current token: ' + currentToken);
+            // console.log('found operand: ' + char + ', current token: ' + currentToken);
             operators.push(char);
             if (char === 'd' && currentToken === ''){
                 operands.push('1');
@@ -33,7 +33,7 @@ DiceTokenizer.prototype.tokenize = function(){
             }
             currentToken = '';
         } else if (char == '%'){
-            console.log('found percent: ' + char + ', current token: ' + currentToken);
+            // console.log('found percent: ' + char + ', current token: ' + currentToken);
             currentToken += '100'
             operands.push(currentToken);
             currentToken = ''
