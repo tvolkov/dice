@@ -22,27 +22,20 @@ DiceTokenizer.prototype.tokenize = function(){
         var char = expression.charAt(i);
         if (!isNaN(char) || char == 'd'){
             currentToken += char;
-        } else if (char === '+' || char === '-' /*|| char === 'd'*/){
+        } else if (char === '+' || char === '-'){
             operators.push(char);
-            /*if (char === 'd' && currentToken === ''){
-                operands.push('1');
-            } else*/ if (currentToken !== ''){
+            if (currentToken !== ''){
                 operands.push(currentToken);    
             }
             currentToken = '';
         } else if (char == '%'){
             currentToken += '100'
-            // operands.push(currentToken);
-            // currentToken = ''
         }
     }
 
     if (currentToken.length > 0){
         operands.push(currentToken);
     }
-
-    // console.log(operands);
-    // console.log(operators);
 
     return {
         operands: operands,

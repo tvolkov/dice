@@ -14,6 +14,10 @@ ExpressionTreeBuilder.prototype.buildTree = function(){
 
     var tree;
 
+    if (operators.length == 0){ // we assume that in this case there's only one operand
+        return {value: operands[0], left: undefined, right: undefined}; 
+    }
+
     for (var i = 0; i < operators.length; i++){
 
         var treeNode = {value: operators[i], left: undefined, right: undefined};
@@ -36,8 +40,6 @@ ExpressionTreeBuilder.prototype.buildTree = function(){
             }
         }
     }
-    // console.log(tree);
-    // console.log(JSON.stringify(tree));
     return tree;
 }
 

@@ -2,8 +2,6 @@ function TreeVisitor(tree){
     this.tree = tree;
 }
 
-
-// TreeVisitor.prototype.parseDice = function(diceStr) {
 function parseDice(diceStr){
     var indexOfD = diceStr.indexOf('d');
     var numberOfDiceStr = diceStr.substring(0, indexOfD);
@@ -16,8 +14,9 @@ function parseDice(diceStr){
 
 TreeVisitor.prototype.calculateMax = function(){
     var sum = 0;
+
     var operator = '+';
-    
+
     visit(this.tree, function(treeNode){
         var value = typeof treeNode.value !== 'undefined' ? treeNode.value : treeNode;
         if (value === '+' || value === '-'){
@@ -43,6 +42,7 @@ TreeVisitor.prototype.calculateMax = function(){
 
 TreeVisitor.prototype.calculateMin = function(){
     var sum = 0;
+
     var operator = '+';
 
     visit(this.tree, function(treeNode){
@@ -71,6 +71,7 @@ TreeVisitor.prototype.calculateMin = function(){
 
 TreeVisitor.prototype.calculateRolls = function(){
     var rolls = [];
+    
     var operator;
 
     visit (this.tree, function(treeNode){
@@ -93,7 +94,6 @@ TreeVisitor.prototype.calculateRolls = function(){
 }
 
 
-// TreeVisitor.prototype.visit = function(treeNode, visitorFunc){
 function visit(treeNode, visitorFunc) {
     if (typeof treeNode.left !== 'undefined'){
         visit(treeNode.left, visitorFunc);
@@ -107,21 +107,16 @@ function visit(treeNode, visitorFunc) {
 }
 
 function getRollsForDice(inputDice, operator) {
-    console.log('getRollsForDice');
-    console.log(inputDice);
     var numberOfDice = inputDice.dice;
-    console.log(numberOfDice)
     var edges = inputDice.edges;
 
     var random = require("random-js")(); // uses the nativeMath engine
     var rolls = [];
 
     for (var i = 0; i < numberOfDice; i++){
-        console.log('edges');
-        console.log(edges);
         rolls.push(random.integer(1, parseInt(edges, 10)));
     }
-    console.log('getRollsForDice: dice' + rolls);
+
     return rolls;
 }
 
