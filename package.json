@@ -1,6 +1,6 @@
 {
   "name": "dice-tvolkov",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dice expression",
   "main": "index.js",
   "dependencies": {
