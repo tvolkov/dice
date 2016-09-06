@@ -3,20 +3,63 @@ function TreeVisitor(tree){
 }
 
 TreeVisitor.prototype.traverse = function(){
-    var result = {max: undefined, min: undefined, rolls: []]};
-    return traverseTree(this.tree, result);
+    return {max: calculateMax(), min: calculateMin(), rolls: calculateRolls()]};
 }
 
-TreeVisitor.prototype.traverseRecursive = function(tree, result){
-    var value = tree.value;
-    if (value == '+'){
-        return traverseRecursive(tree.left) + traverseRecursive(tree.right, result);
-    } else if (value == '-'){
-        return traverseRecursive(tree.left) - traverseRecursive(tree.right, result);
-    } else if (value == 'd'){
-        evaluateDice(tree.left, tree.right, result);
-    } else {
-        return value;
+TreeVisitor.prototype.calculateMax = function(){
+    var sum = 0;
+    var operator;
+    
+    visit(this.tree, function(treeNode){
+        var value = treeNode.value;
+        if (value == '+' || value == '-'){
+            operator = value;
+        } else if (value == 'd'){
+            if (operator == '+'){
+                sum += treeNode.left * treeNode.right;
+            } else {
+                sum -= treeNode.left * treeNode.right;
+            }
+        } else {
+            if (operator == '+'){                
+                sum += value;
+            } else {
+                sum -= value;
+            }
+        }
+    });
+
+    return sum;
+}
+
+TreeVisitor.prototype.calculateMin = function(){
+    var sum = 0;
+    var operator;
+
+    visit(this.tree, function(treeNode){
+        var value = treeNode.value;
+        if (value == '+' || value == '-'){
+            operator = value;
+        } else if (value == 'd'){
+            if (operator == '+'){
+                sum += treeNode.left;
+            } else {
+                sum
+            }
+        }
+    });
+}
+
+
+TreeVisitor.prototype.visit = function(treeNode, visitorFunc){
+    if (typeof treeNode.left !== 'undefined'){
+        visit(treeNode.left, visitorFunc);
+    }
+
+    visitorFunc(treeNode);
+
+    if (typeof treeNode.right !== 'undefined'){
+        visit(treeNode.right, visitorFunc);
     }
 }
 

@@ -36,7 +36,7 @@ ExpressionTreeBuilder.prototype.buildTree = function(){
             }
         }
     }
-
+    console.log(tree);
     console.log(JSON.stringify(tree));
     return tree;
 }

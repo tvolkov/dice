@@ -20,23 +20,20 @@ DiceTokenizer.prototype.tokenize = function(){
 
     for (var i = 0; i < expression.length; i++){
         var char = expression.charAt(i);
-        if (!isNaN(char)){
-            // console.log('found digit: ' + char + ', currentToken: ' + currentToken);
+        if (!isNaN(char) || char == 'd'){
             currentToken += char;
-        } else if (char === '+' || char === '-' || char === 'd'){
-            // console.log('found operand: ' + char + ', current token: ' + currentToken);
+        } else if (char === '+' || char === '-' /*|| char === 'd'*/){
             operators.push(char);
-            if (char === 'd' && currentToken === ''){
+            /*if (char === 'd' && currentToken === ''){
                 operands.push('1');
-            } else if (currentToken !== ''){
+            } else*/ if (currentToken !== ''){
                 operands.push(currentToken);    
             }
             currentToken = '';
         } else if (char == '%'){
-            // console.log('found percent: ' + char + ', current token: ' + currentToken);
             currentToken += '100'
-            operands.push(currentToken);
-            currentToken = ''
+            // operands.push(currentToken);
+            // currentToken = ''
         }
     }
 
