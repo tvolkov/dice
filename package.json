@@ -4,10 +4,12 @@
   "description": "dice expression",
   "main": "index.js",
   "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
     "random-js": "^1.0.8"
   },
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
