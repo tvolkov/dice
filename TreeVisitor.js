@@ -59,9 +59,9 @@ TreeVisitor.prototype.calculateMin = function(){
             }
         } else {
             if (operator === '+'){
-                sum += value;
+                sum += parseInt(value, 10);
             } else {
-                sum -= value;
+                sum -= parseInt(value, 10);
             }
         }
     });
@@ -77,12 +77,12 @@ TreeVisitor.prototype.calculateRolls = function(){
         var value = typeof treeNode.value !== 'undefined' ? treeNode.value : treeNode;
         if (value === '+' || value === '-'){
             operator = value;
-        } else if (value === 'd'){
+        } else if (value.indexOf('d') != -1){
             var dice = parseDice(value);
-            rolls.push(this.getRollsForDice(dice, operator));
+            rolls.push(getRollsForDice(dice, operator));
         } else {
             if (operator === '+'){
-                rolls.push(value);
+                rolls.push(parseInt(value, 10));
             } else {
                 rolls.push(value * -1);
             }
@@ -106,23 +106,27 @@ function visit(treeNode, visitorFunc) {
     }
 }
 
-TreeVisitor.prototype.getRollsForDice = function(dice, operator){
-    var dice = dice.dice;
-    var edges = dice.edges;
+function getRollsForDice(inputDice, operator) {
+    console.log('getRollsForDice');
+    console.log(inputDice);
+    var numberOfDice = inputDice.dice;
+    console.log(numberOfDice)
+    var edges = inputDice.edges;
 
     var random = require("random-js")(); // uses the nativeMath engine
     var rolls = [];
 
-    for (var i = 0; i < dice; i++){
-        rolls.push(random.integer(1, edges));
+    for (var i = 0; i < numberOfDice; i++){
+        console.log('edges');
+        console.log(edges);
+        rolls.push(random.integer(1, parseInt(edges, 10)));
     }
-
+    console.log('getRollsForDice: dice' + rolls);
     return rolls;
 }
 
 TreeVisitor.prototype.traverse = function(){
     return {max: this.calculateMax(), min: this.calculateMin(), rolls: this.calculateRolls()};
 }
-
 
 module.exports = TreeVisitor;
