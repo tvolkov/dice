@@ -9,26 +9,28 @@ ExpressionTreeBuilder.prototype.buildTree = function(){
 
     var currentOperand = 0;
 
-    var tree;
+    var tree = {value: undefined, left: undefined, right: undefined};
 
     for (var i = 0; i < operators.length; i++){
-        var treeNode = operators[i];
-        treeNode.left = operands[currentOperand++];
-        treeNode.right = operands[currentOperand++]
-        if (typeof tree == 'undefined'){
-            tree = treeNode;
-        } else {
-            tree.left = treeNode;
-        }
+        // var treeNode = operators[i];
+        // treeNode.left = operands[currentOperand++];
+        // treeNode.right = operands[currentOperand++]
+        // if (typeof tree == 'undefined'){
+        //     tree = treeNode;
+        // } else {
+        //     tree.left = treeNode;
+        // }
 
         //--------------------------------------------
-        var treeNode = operators[i];
-        if (typeof tree == 'undefined'){
+        var treeNode = {value: operators[i], left: undefined, right: undefined};
+        if (typeof tree.value == 'undefined' && typeof tree.left == 'undefined' && typeof tree.right == 'undefined'){
+            console.log('tree is undefined');
             treeNode.left = operands[currentOperand++];
             treeNode.right = operands[currentOperand++]
             tree = treeNode;
+            console.log('treenode'+treeNode);
         } else {
-            if (treeNode == 'd'){
+            if (treeNode.value == 'd'){
                 treeNode.left = operands[currentOperand - 1];
                 treeNode.right = operands[currentOperand++]
                 tree.right = treeNode;
