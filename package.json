@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://tvolkov@bitbucket.org/tvolkov/dice.git"
+    "url": "https://github.com/tvolkov/dice.git"
   },
   "keywords": [
     "dice",
@@ -19,5 +19,5 @@
   ],
   "author": "Timofey Volkov <timofey.volkov@gmail.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/tvolkov/dice#readme"
+  "homepage": "https://github.com/tvolkov/dice.git"
 }
