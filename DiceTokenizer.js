@@ -2,7 +2,7 @@ function DiceTokenizer(strExpression){
     this.strExpression = strExpression;
 }
 
-DiceTokenizer.prototype.isExpressionValid = function(strExpression) {
+DiceTokenizer.prototype.isExpressionValid = function() {
     /^(([0-9]*)d([1-90-9]+|\%)((\+|\-)[1-9]+)*)+$/.test(this.strExpression);
     return true //todo fix the regex
 }
@@ -41,8 +41,8 @@ DiceTokenizer.prototype.tokenize = function(){
         operands.push(currentToken);
     }
 
-    console.log(operands);
-    console.log(operators);
+    // console.log(operands);
+    // console.log(operators);
 
     return {
         operands: operands,

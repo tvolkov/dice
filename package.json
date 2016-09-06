@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "dice expression",
   "main": "index.js",
+  "dependencies": {
+    "random-js": "^1.0.8"
+  },
   "scripts": {
     "test": "test"
   },

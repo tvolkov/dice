@@ -1,9 +1,9 @@
 require('node-import');
 
 
-// include('dice/DiceTokenizer');
 var DiceTokenizer = require('./DiceTokenizer.js');
 var ExpressionTreeBuilder = require('./ExpressionTreeBuilder.js');
+var TreeVisitor = require('./TreeVisitor.js');
 
 function DiceExpression(strExpression) {
     this.strExpression = strExpression.toLowerCase();
@@ -15,6 +15,9 @@ DiceExpression.prototype.parseExpression = function(){
     var tokens = diceTokenizer.tokenize();
     var treeBuilder = new ExpressionTreeBuilder(tokens);
     var tree = treeBuilder.buildTree();
+    var treeVisitor = new TreeVisitor(tree);
+    var result = treeVisitor.traverse();
+    console.log(result);
 }
 
 module.exports = DiceExpression;
