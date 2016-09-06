@@ -121,6 +121,9 @@ function getRollsForDice(inputDice, operator) {
 }
 
 TreeVisitor.prototype.traverse = function(){
+    if (!this.tree){
+        throw new Error('empty tree');
+    }
     return {max: this.calculateMax(), min: this.calculateMin(), rolls: this.calculateRolls()};
 }
 

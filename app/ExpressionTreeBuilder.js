@@ -9,8 +9,13 @@ function ExpressionTreeBuilder(tokens){
 //but that would only make sense for parsing huge expressions.
 //for the majority of cases the current implementation is enough, I think
 ExpressionTreeBuilder.prototype.buildTree = function(){
+    if (!this.tokens || !this.tokens.operands || !this.tokens.operators){
+        throw new Error('no tokens found');
+    }
+
     var operands = this.tokens.operands;
     var operators = this.tokens.operators;
+
 
     var currentOperand = 0;
 
