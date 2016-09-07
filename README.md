@@ -5,8 +5,8 @@
 var DiceExpression = require('dice-tvolkov')
 var dice = new DiceExpression("2d10 + d6 - 7 + 2").evaluate();
 ```
+## Output:
 ```
-output:
 2d10+d6-7+2
 { max: 21, min: -2, rolls: [ [ 6, 3 ], [ 3 ], -7, 2 ] }
 ```
