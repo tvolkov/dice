@@ -80,7 +80,7 @@ TreeVisitor.prototype.calculateRolls = function(){
             operator = value;
         } else if (value.indexOf('d') != -1){
             var dice = parseDice(value);
-            rolls.push(getRollsForDice(dice, operator));
+            rolls.push.apply(rolls, getRollsForDice(dice, operator));
         } else {
             if (operator === '+'){
                 rolls.push(parseInt(value, 10));
