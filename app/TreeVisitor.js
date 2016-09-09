@@ -124,7 +124,8 @@ TreeVisitor.prototype.traverse = function(){
     if (!this.tree){
         throw new Error('empty tree');
     }
-    return {max: this.calculateMax(), min: this.calculateMin(), rolls: this.calculateRolls()};
+    var resultRolls = this.calculateRolls();
+    return {max: this.calculateMax(), min: this.calculateMin(), current: resultRolls.reduce((a, b) => a + b, 0), rolls: resultRolls};
 }
 
 module.exports = TreeVisitor;
