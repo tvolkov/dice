@@ -8,7 +8,7 @@ new DiceExpression("2d10 + d6 - 7 + 2").evaluate();
 ## Output:
 ```
 2d10+d6-7+2
-{ max: 21, min: -2, rolls: [ 6, 3, 3, -7, 2 ] }
+{ max: 21, min: -2, current: 7, rolls: [ 6, 3, 3, -7, 2 ] }
 ```
 
 ## Current issues: 
